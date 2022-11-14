@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: 221114-create-table
+      author: almo
+      changes:
+        - createTable:
+            tableName: task
+            columns:
+              - column:
+                  name: id
+                  type: bigserial
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: date
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: done
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+        - createIndex:
+            clustered: true
+            columns:
+              - column:
+                  descending: true
+                  name: done
+            indexName: task_done_idx
+            schemaName: public
+            tableName: task
+            unique: true
+        - createIndex:
+            clustered: true
+            columns:
+              - column:
+                  descending: true
+                  name: date
+            indexName: task_date_idx
+            schemaName: public
+            tableName: task
+            unique: true
