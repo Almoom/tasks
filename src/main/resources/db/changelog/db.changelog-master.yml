@@ -1,3 +1,5 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/changeset/221114-create-table.yml
+      file: db/changelog/changeset/221113-create-table-tasks.yml
+  - include:
+      file: db/changelog/changeset/221114-create-table-users.yml

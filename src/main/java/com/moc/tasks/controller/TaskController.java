@@ -1,7 +1,9 @@
 package com.moc.tasks.controller;
 
 import com.moc.tasks.model.TaskEntity;
+import com.moc.tasks.model.UserEntity;
 import com.moc.tasks.repository.TaskRepository;
+import com.moc.tasks.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +14,13 @@ public class TaskController {
 
     @Autowired
     private TaskRepository taskRepository;
+    @Autowired
+    private UserService userService;
+
+    @PostMapping("/adduser")
+    public UserEntity create(@RequestBody UserEntity user) {
+        return userService.create(user);
+    }
 
 //    curl --header "Content-Type: application/json" -X POST  -d '{"date":"2022-11-14","description":"xyz"}' http://localhost:8080/tasks
 
@@ -46,4 +55,5 @@ public class TaskController {
     public void patchMethod(@PathVariable Long id){
         taskRepository.markAsDone(id);
     }
+
 }

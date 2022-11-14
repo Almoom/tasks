@@ -3,21 +3,18 @@ package com.moc.tasks.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Data
-@Table(name = "tasks")
-public class TaskEntity {
+@Table(name = "users")
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate date;
+    private String login;
 
-    private String description;
-
-    private boolean done;
+    private String password;
 
 }
