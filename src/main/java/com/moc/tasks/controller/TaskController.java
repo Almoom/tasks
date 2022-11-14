@@ -17,9 +17,19 @@ public class TaskController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/adduser")
+    @PostMapping("/users")
     public UserEntity create(@RequestBody UserEntity user) {
         return userService.create(user);
+    }
+
+//    @PostMapping("/login")
+//    public UserEntity login() {
+//        return userService.getCurrentUser();
+//    }
+
+    @GetMapping("/users/me")
+    public UserEntity getCurrentUser() {
+        return userService.getCurrentUser();
     }
 
 //    curl --header "Content-Type: application/json" -X POST  -d '{"date":"2022-11-14","description":"xyz"}' http://localhost:8080/tasks
