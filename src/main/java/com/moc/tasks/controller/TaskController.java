@@ -22,11 +22,6 @@ public class TaskController {
         return userService.create(user);
     }
 
-//    @PostMapping("/login")
-//    public UserEntity login() {
-//        return userService.getCurrentUser();
-//    }
-
     @GetMapping("/users/me")
     public UserEntity getCurrentUser() {
         return userService.getCurrentUser();
@@ -36,12 +31,13 @@ public class TaskController {
 
     @PostMapping("/tasks")
     public TaskEntity create(@RequestBody TaskEntity task) {
+        task.setUserId(userService.getCurrentUser().getId());
         return taskRepository.save(task);
     }
 
     @GetMapping("/tasks")
     public Iterable<TaskEntity> getAll() {
-        return taskRepository.findAll();
+        return taskRepository.findAllByUserId(userService.getCurrentUser().getId()).orElse(null);
     }
 
     @GetMapping("/tasks/{id}")

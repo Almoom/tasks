@@ -16,6 +16,8 @@ public class TaskEntity {
 
     private LocalDate date;
 
+    private Long userId;
+
     private String description;
 
     private boolean done;

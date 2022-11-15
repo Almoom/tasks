@@ -19,6 +19,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: user_id
+                  type: bigserial
+                  constraints:
+                    nullable: false
+              - column:
                   name: description
                   type: text
               - column:
@@ -44,6 +49,16 @@ databaseChangeLog:
                   descending: true
                   name: date
             indexName: tasks_date_idx
+            schemaName: public
+            tableName: tasks
+            unique: false
+        - createIndex:
+            clustered: true
+            columns:
+              - column:
+                  descending: true
+                  name: user_id
+            indexName: tasks_user_id_idx
             schemaName: public
             tableName: tasks
             unique: false
