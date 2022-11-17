@@ -30,7 +30,7 @@ class UserServiceImplTest {
         Mockito.doReturn(encodedPassword).when(passwordEncoder)
                 .encode(user.getPassword());
 
-        userService.create(user);
+        userService.saveUser(user);
         Mockito.verify(userRepository).save(user);
         Assertions.assertEquals(encodedPassword, user.getPassword());
     }

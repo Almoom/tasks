@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @RestController
 public class TaskController {
@@ -42,7 +43,12 @@ public class TaskController {
 
     @GetMapping("/tasks/{id}")
     public TaskEntity getById(@PathVariable Long id) {
-        return taskRepository.findById(id).orElse(null);
+        TaskEntity taskEntity = taskRepository.findById(id).orElse(null);
+        if (taskEntity != null && Objects.equals(taskEntity.getUserId(), userService.getCurrentUser().getId())) {
+            return taskEntity;
+        } else {
+            throw new RuntimeException();
+        }
     }
 
     @PutMapping("/tasks/{id}")
